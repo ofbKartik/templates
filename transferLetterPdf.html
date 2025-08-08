@@ -1,0 +1,182 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="border: 1px solid #000000">
+      <div style="border-bottom: 1px solid #000000">
+        <p
+          style="
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 0;
+          "
+        >
+          TRANSFER LETTER
+        </p>
+        <p
+          style="
+            text-align: center;
+            font-size: 8px;
+            font-weight: 500;
+            margin-top: 2px;
+          "
+        >
+          Registered Office: B-1102, Sankalp Iconic Tower, Opp. Vikramnagar,
+          Bopal Ambli Road, Ahmedabad- 380054, Gujarat, India,
+          Email:finance@ofbusiness.in; Phone: 1800 1029 586; CIN:
+          U74140GJ2015PTC154393
+        </p>
+      </div>
+      <div style="display: flex; border-bottom: 1px solid #000000">
+        <div
+          style="border-right: 1px solid #000000; width: 40%; padding: 8px 6px"
+        >
+          <img
+            src="https://d5nfy7n2jvqm2.cloudfront.net/fe-imgs/new_design/logo_green.png"
+            height="38"
+            alt="logo"
+          />
+          <p style="font-size: 10px; font-weight: 500; margin-bottom: 2px">
+            From
+          </p>
+          <p style="font-size: 12px; font-weight: 700; margin-top: 0">
+            OFB Tech Pvt. Ltd.
+          </p>
+        </div>
+        <div style="width: 60%">
+          <div style="display: flex; border-bottom: 1px solid #000000">
+            <div
+              style="
+                border-right: 1px solid #000000;
+                width: 50%;
+                padding: 8px 6px;
+              "
+            >
+              <p
+                style="
+                  font-size: 10px;
+                  font-weight: 500;
+                  margin: 0;
+                  margin-bottom: 2px;
+                "
+              >
+                Transfer Letter No.
+              </p>
+              <p style="font-size: 12px; font-weight: 700; margin: 0">
+                $transferLetterNo
+              </p>
+            </div>
+            <div style="width: 50%; padding: 8px 6px">
+              <p
+                style="
+                  font-size: 10px;
+                  font-weight: 500;
+                  margin: 0;
+                  margin-bottom: 2px;
+                "
+              >
+                Dated
+              </p>
+              <p style="font-size: 12px; font-weight: 700; margin: 0">$date</p>
+            </div>
+          </div>
+          <div style="padding: 8px 6px">
+            <p
+              style="
+                font-size: 10px;
+                font-weight: 500;
+                margin: 0;
+                margin-bottom: 2px;
+              "
+            >
+              To
+            </p>
+            <p
+              style="
+                font-size: 12px;
+                font-weight: 700;
+                margin: 0;
+                margin-bottom: 4px;
+              "
+            >
+              Warehouse Manager
+            </p>
+            <p style="font-size: 11px; font-weight: 500; margin: 0">
+              $vendorName
+            </p>
+            <p style="font-size: 11px; font-weight: 400; margin: 0">
+              $address.addressLine1 $address.addressLine2 $address.landmark
+              $address.city $address.state $address.country - $address.pinCode
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 8px 6px; border-bottom: 1px solid #000000">
+        <p style="font-size: 12px; font-weight: 500; margin: 6px 0px 0px 0px">
+          Dear Sir,
+        </p>
+        <p style="font-size: 12px; font-weight: 500; margin: 6px 0px">
+          We hereby inform you that the items listed below have been transferred
+          to
+          <strong>$buyerName (GSTIN: $gst)</strong> via Invoice No.
+          <strong>$invoiceNo</strong>.
+        </p>
+      </div>
+
+      <table
+        class="override"
+        align="center"
+        style="border-collapse: collapse; width: 100%"
+      >
+        <thead>
+          <tr style="background-color: #ffffff; font-size: 12px">
+            <th style="border: 1px solid #000; padding: 6px; font-size: 12px">
+              S. No.
+            </th>
+            <th style="border: 1px solid #000; padding: 6px; font-size: 12px">
+              Items Description
+            </th>
+            <th style="border: 1px solid #000; padding: 6px; font-size: 12px">
+              Quantity
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          #set($index = 1) #foreach($item in $orderItemList)
+          <tr>
+            <td style="border: 1px solid #000; padding: 6px; font-size: 12px">
+              $index
+            </td>
+            <td style="border: 1px solid #000; padding: 6px; font-size: 12px">
+              $item.orderItemName
+            </td>
+            <td style="border: 1px solid #000; padding: 6px; font-size: 12px">
+              $item.actualQuantity $item.unit
+            </td>
+          </tr>
+          #set($index = $index + 1) #end
+        </tbody>
+      </table>
+      <div style="display: flex; justify-content: end; padding: 20px">
+        <div style="text-align: left; font-size: 10px">
+          <strong>For OFB Tech Pvt Ltd</strong><br />
+          Digitally Signed By<br />
+          Siddharth Gupta<br />
+          OFB TECH PRIVATE LIMITED<br />
+          Wed Dec 20 15:00:03 IST 2023<br />
+          <strong>Authorised Signatory</strong>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align: center; font-size: 11px; margin-top: 0px">
+      This is a computer-generated Transfer letter
+    </p>
+  </body>
+</html>

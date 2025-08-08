@@ -1,0 +1,463 @@
+<html lang="en">
+    
+</html>
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        html { font-family:sans-serif; padding: 0; height: 100%;}
+        body { margin: 0; font-size: 12px; height: 100%;}
+
+        .wrapperTable { width: 100%;border-collapse:collapse; height: 100%;}
+
+        h2 { margin: 0; padding: 5px 0; font-size: 11px; font-weight: bold; display: block; text-align: center;}
+        table { width: 100%;border-collapse:collapse;line-height:normal;}
+        .commonTable { width: 100%;border-collapse:collapse;line-height:normal;font-size: 11px;border-top: 1px solid #333; border-bottom: 1px solid #333; -fs-table-paginate: paginate; border-spacing: 0px;}
+        .commonTable thead td { border-bottom: 1px solid #333; text-align: center; vertical-align: top;}
+        .commonTable td {padding: 5px 4px; border-left: 1px solid #333;}
+        .commonTable tr td:first-child { border-left: none;}
+        .commonTable .totalWrap td { font-weight: bold; border-top: 1px solid #333; padding: 8px 4px;}
+        .commonTable.alignTop td { vertical-align: top;}
+
+        .addressWrap { line-height: 1.35; font-size: 12px;}
+        .addressWrap strong { display: block;}
+        .pageSubTitle { font-size: 12px; font-weight: bold; padding: 10px 4px 5px;}
+        .pageBreak {page-break-after: always;}
+        .block { display: block;}
+        .right { float: right;}
+
+        .vAlignTop { vertical-align: top;}
+        .vAlignMiddle { vertical-align: middle;}
+        .vAlignBottom { vertical-align: bottom;}
+
+        .alignRight { text-align: right;}
+        .alignCenter { text-align: center;}
+
+        .borderBottom { border-bottom:  1px solid #333;}
+        .borderTop { border-top:  1px solid #333;}
+        .borderRight { border-right:  1px solid #333;}
+        .borderLeft { border-left:  1px solid #333;}
+
+        .noPadding { padding: 0;}
+        .paddingBottom5 { padding-bottom: 5px;}
+        .paddingBottom10 { padding-bottom: 10px;}
+        .paddingTop5 { padding-top: 5px;}
+        .paddingTop10 { padding-top: 10px;}
+        .paddingTop20 { padding-top: 20px;}
+        .paddingTop40 { padding-top: 40px;}
+
+        .marginBottom5 { margin-bottom: 5px;}
+        .marginBottom10 { margin-bottom: 10px;}
+        .marginTop5 { margin-top: 5px;}
+        .marginTop10 { margin-top: 10px;}
+        .negativeSideMargin5 { margin-left: -5px; margin-right: -5px;}
+
+        .invoiceAddressWrap { padding: 5px 5px 10px;}
+
+        .invoiceDetailTable td { border-bottom: 1px solid #333; border-right: 1px solid #333; padding: 4px; vertical-align: top; }
+        .invoiceDetailTable td strong { display: block; padding-top: 4px;}
+        .invoiceDetailTable td:last-child { border-right: none;}
+        .invoiceDetailTable tr:last-child td { border-bottom: none;}
+
+        .underlineText { padding-bottom: 1px; border-bottom:  1px solid #333; display: inline-block;}
+
+        .footerDetails { padding: 5px;line-height: 1.35;}
+        .footerDetails strong { display: block;}
+        .termsWrap { line-height: 1.35;}
+
+        .inlineDetails .inlineLabel { display: inline-block; min-width: 120px;}
+        .inlineDetails strong { display: inline-block;}
+
+        .bankDetailTable td { vertical-align: top; padding: 2px 2px 2px 0; font-size: 11px;}
+        .bankDetailTable td:first-child { width: 20%;}
+        .bankDetailTable td:last-child { width: 80%;}
+        .bankDetailTable strong { display: inline-block;}
+
+        .termsWrap { padding: 2px 0 0 20px; margin: 0;}
+        .termsWrap li { list-style-type: decimal;}
+
+        .footer { position: running(footer); padding: 0 0 10px; }
+
+        @page {
+            size: A4; margin: 20pt 15pt 25pt 36pt; padding: 0; border: 1px solid #333;
+            @bottom-center { content: element(footer); vertical-align: bottom;}
+            @top-right { content: "Page " counter(page) " of " counter(pages); font-size: 9px; font-family:sans-serif; vertical-align: top; padding-top: 10px;}
+            #if($previewOnly)
+            background-image: url("https://d5nfy7n2jvqm2.cloudfront.net/fe-imgs/previewPdfbg.png"); background-repeat: no-repeat; background-position: center; background-size: 50%;
+            #end
+        }
+    </style>
+</head>
+<body>
+#set($isGstType = true)
+#if($isGstType)
+#set( $companyTin = $InvoicePdfUtils.getString($invoiceDto.getSupplierAddress().getLinkedGst()))
+#set( $companyVatTin = $InvoicePdfUtils.getString($InvoicePdfUtils.getVatTin($ofbEntity, $invoiceDto.getSupplierAddress().getState())))
+#set( $companyCstTin = $InvoicePdfUtils.getString($InvoicePdfUtils.getCstTin($ofbEntity, $invoiceDto.getSupplierAddress().getState())))
+#else
+#set( $companyTin = $InvoicePdfUtils.getString($InvoicePdfUtils.getVatTin($ofbEntity, $invoiceDto.getSupplierAddress().getState())))
+#end
+
+<div class="footer">
+    <table>
+        <tr>
+            <td style="width: 20%"></td>
+            <td style="width: 60%" class="alignCenter">This is a Computer Generated Tax Invoice</td>
+            <td style="width: 20%" class="alignRight">E. &amp; O.E</td>
+        </tr>
+    </table>
+</div>
+<table class="wrapperTable">
+    <tr>
+        <td>
+            <table class="borderBottom">
+                <tr>
+                    <td style="width: 20%;"></td>
+
+                    <td style="width: 60%; text-align: center; padding: 5px 0;">
+                        <strong>
+                            TAX INVOICE
+                        </strong>
+
+                    </td>
+                    <td style="width: 20%; font-size: 10px; text-align: right; padding: 5px;"><i>$copyName</i></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                         <div style="font-size: 8.7px" class="alignCenter paddingBottom5">$invoiceDto.getDefaultInvoiceAddressOnTemplate()</div>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td style="width: 50%;" class="borderRight noPadding">
+                        <div class="invoiceAddressWrap">
+                            <div>
+                                <span style="display: inline-block; width:60%; vertical-align:top;">
+                                <img src="$invoiceDto.getDefaultImageLink()" width="170px" style="display: inline-block;" />
+                                </span>
+                                #if($OfbUtils.isNotBlank($qrcodeImageSource))
+                                <span style="display: inline-block; width:39%; text-align:right; vertical-align:top;">
+                                    <img src="$qrcodeImageSource" width="100px" height="100px" alt="code" style="display: inline-block;"/>
+                                </span>
+                                #end
+                            </div>
+                            <div class="addressWrap paddingTop5 paddingBottom5">
+                                <div class="paddingBottom5">Sold by</div>
+                                <strong>$invoiceDto.getCompanyName()</strong>
+                                #if($OfbUtils.isNotBlank($invoiceDto.getSupplierAddress().getLandmark()))
+                                $invoiceDto.getSupplierAddress().getLandmark()<br/>
+                                #end
+                                #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine1($invoiceDto.getSupplierAddress())))
+                                $InvoicePdfUtils.getAddressLine1($invoiceDto.getSupplierAddress())<br/>
+                                #end
+                                #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine2($invoiceDto.getSupplierAddress())))
+                                $InvoicePdfUtils.getAddressLine2($invoiceDto.getSupplierAddress())<br/>
+                                #end
+                                #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine3($invoiceDto.getSupplierAddress())))
+                                $InvoicePdfUtils.getAddressLine3($invoiceDto.getSupplierAddress())<br/>
+                                #end
+                                State Code & Name: $InvoicePdfUtils.getStateNameAndCode($invoiceDto.getSupplierAddress())<br/>
+                                #if($OfbUtils.isNotBlank($ofbEntity.getPan()))
+                                PAN No : $InvoicePdfUtils.getString($ofbEntity.getPan())<br/>
+                                #end
+                                #if($isGstType)
+                                GSTIN : $companyTin
+                                #else
+                                #if($OfbUtils.isNotBlank($ofbEntity.getServiceTaxNumber()))
+                                Service Tax No : $InvoicePdfUtils.getString($ofbEntity.getServiceTaxNumber())<br/>
+                                #end
+                                TIN No. : $companyTin
+                                #end
+                            </div>
+                            <div class="borderBottom negativeSideMargin5"></div>
+                            <div class="addressWrap marginTop5">
+                                <div class="paddingBottom5">Buyer</div>
+                                <strong>$invoiceDto.getForOrganisationName()</strong>
+                                #if($OfbUtils.isNotBlank($piInfo.getBuyerBillingAddress().getLandmark()))
+                                $invoiceDto.getBuyerBillingAddress().getLandmark()<br/>
+                                #end
+                                #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine1($invoiceDto.getBuyerBillingAddress())))
+                                $InvoicePdfUtils.getAddressLine1($invoiceDto.getBuyerBillingAddress())<br/>
+                                #end
+                                #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine2($invoiceDto.getBuyerBillingAddress())))
+                                $InvoicePdfUtils.getAddressLine2($invoiceDto.getBuyerBillingAddress())<br/>
+                                #end
+                                #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine3($invoiceDto.getBuyerBillingAddress())))
+                                $InvoicePdfUtils.getAddressLine3($invoiceDto.getBuyerBillingAddress())<br/>
+                                #end
+                                State Code & Name: $InvoicePdfUtils.getStateNameAndCode($invoiceDto.getBuyerBillingAddress())<br/>
+                                #if($isGstType)
+                                GSTIN :
+                                #else
+                                TIN No :
+                                #end
+                                $InvoicePdfUtils.getString($invoiceDto.getBuyerTIN())
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 50%;" class="vAlignTop noPadding">
+                        <table class="invoiceDetailTable">
+                            #if($OfbUtils.isNotBlank($irnNumber))
+                            <tr>
+                                <td colspan="2">
+                                    IRN No
+                                    <strong>$irnNumber</strong>
+                                </td>
+                            </tr>
+                            #end
+                            <tr>
+                                <td style="width: 50%">
+                                    Inv. No
+                                    <strong>$invoiceDto.getInvoiceNo()</strong>
+                                </td>
+                                <td style="width: 50%">
+                                    Dated
+                                    <strong>$InvoicePdfUtils.getDateToDisplay($invoiceDto)</strong>
+                                </td>
+                            </tr>
+                            #if($OfbUtils.isNotBlank($irnNumber))
+                            <tr>
+                                <td style="width: 50%">
+                                    Ack No.
+                                    #if($OfbUtils.isNotBlankObject($eInvoiceSignedResponseDto) && $OfbUtils.isNotBlankObject($eInvoiceSignedResponseDto.getAckNo()))
+                                    <strong>$eInvoiceSignedResponseDto.getAckNo()</strong>
+                                    #end
+                                </td>
+                                <td style="width: 50%">
+                                    Supply Type
+                                    #if($OfbUtils.isNotBlankObject($eInvoiceSignedResponseDto) && $OfbUtils.isNotBlankObject($eInvoiceSignedResponseDto.getSignedInvoiceDto()) && $OfbUtils.isNotBlankObject($eInvoiceSignedResponseDto.getSignedInvoiceDto().getTransactionDetailDto()))
+                                    <strong>$eInvoiceSignedResponseDto.getSignedInvoiceDto().getTransactionDetailDto().getSupplyType()</strong>
+                                    #end
+                                </td>
+                            </tr>
+                            #end
+                            <tr>
+                                <td>
+                                    Supplier's Ref
+                                    <strong>$InvoicePdfUtils.getString($invoiceDto.getBuyerDocumentNo())</strong>
+                                </td>
+                                <td>
+                                    State Code & Name: <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Buyer Document No.
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Dispatch Document No.
+                                    <strong>$InvoicePdfUtils.getString($invoiceDto.getDispatchDocumentNo())</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Dispatched through
+                                    <strong>$InvoicePdfUtils.getString($invoiceDto.getDispatchedThrough())</strong>
+                                </td>
+                                <td>
+                                    Destination
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Payment Terms
+                                    <strong>
+                                        #if($invoiceDto.getPaymentTermsLine() == "Full advance")
+                                        Immediate
+                                        #else
+                                        $invoiceDto.getPaymentTermsLine()
+                                        #end
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table class="commonTable">
+                <thead>
+                <tr>
+                    <td style="width: 5%;">Sl No.</td>
+                    #if($isGstType)
+                    <td style="width: 55%;">Description</td>
+                    <td style="width: 20%;">HSN</td>
+                    #else
+                    <td style="width: 75%;">Description</td>
+                    #end
+                    <td style="width: 20%;">Amount</td>
+                </tr>
+                </thead>
+                <tr>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    #if($isGstType)
+                    <td>&#160;</td>
+                    #end
+                    <td>&#160;</td>
+                </tr>
+
+                #foreach( $charge in $invoiceDto.getOtherChargesBackCalculated())
+                #if(!$OfbUtils.isBlankObject($charge) && !$charge.isGstRateSameAsItem())
+                <tr>
+                    <td>&#160;</td>
+                    <td class="alignRight"><strong>$charge.getLedgerHead()</strong></td>
+                    #if($isGstType)
+                    <td class="alignCenter">$InvoicePdfUtils.getSacCode($charge.getSacCode())</td>
+                    #end
+                    <td class="alignRight"><strong>$numberFormats.format($idsFormat, $charge.getValue())</strong></td>
+                </tr>
+                #if($invoiceDto.getFinanceIdOtherChargesGstCalculationMap().containsKey($charge.getFinanceAccount().getFinanceAccountId()))
+                #set($gstCalculation = $invoiceDto.getFinanceIdOtherChargesGstCalculationMap().get($charge.getFinanceAccount().getFinanceAccountId()))
+                #if($BigDecimalUtils.isGreaterThanZero($gstCalculation.getIGstAmount()))
+                <tr>
+                    <td>&#160;</td>
+                    <td class="alignRight"><strong>IGST $numberFormats.format($idsFormat, $gstCalculation.getIGstRate())%</strong></td>
+                    #if($isGstType)
+                    <td>&#160;</td>
+                    #end
+                    <td class="alignRight"><strong>$numberFormats.format($idsFormat, $BigDecimalUtils.round($gstCalculation.getIGstAmount(), 2))</strong></td>
+                </tr>
+                #end
+                #if($BigDecimalUtils.isGreaterThanZero($gstCalculation.getSGstAmount()))
+                <tr>
+                    <td>&#160;</td>
+                    <td class="alignRight"><strong>SGST $numberFormats.format($idsFormat, $gstCalculation.getSGstRate())%</strong></td>
+                    #if($isGstType)
+                    <td>&#160;</td>
+                    #end
+                    <td class="alignRight"><strong>$numberFormats.format($idsFormat, $BigDecimalUtils.round($gstCalculation.getSGstAmount(), 2))</strong></td>
+                </tr>
+                #end
+                #if($BigDecimalUtils.isGreaterThanZero($gstCalculation.getCGstAmount()))
+                <tr>
+                    <td>&#160;</td>
+                    <td class="alignRight"><strong>CGST $numberFormats.format($idsFormat,  $gstCalculation.getSGstRate())%</strong></td>
+                    #if($isGstType)
+                    <td>&#160;</td>
+                    #end
+                    <td class="alignRight"><strong>$numberFormats.format($idsFormat, $BigDecimalUtils.round($gstCalculation.getSGstAmount(), 2))</strong></td>
+                </tr>
+                #end
+                #end
+                #end
+                #end
+
+                #if(!$BigDecimalUtils.isZero($invoiceDto.getRoundOff()))
+                <tr>
+                    <td>&#160;</td>
+                    <td class="alignRight"><strong>Round Off</strong></td>
+                    #if($isGstType)
+                    <td>&#160;</td>
+                    #end
+                    <td class="alignRight"><strong>$numberFormats.format($idsFormat, $BigDecimalUtils.round($invoiceDto.getRoundOff(),2))</strong></td>
+                </tr>
+                #end
+                <tr style="min-height:120px">
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    #if($isGstType)
+                    <td>&#160;</td>
+                    #end
+                    <td>&#160;</td>
+                </tr>
+                <tr class="totalWrap">
+                    <td>&#160;</td>
+                    <td class="alignRight">Total</td>
+                    #if($isGstType)
+                    <td>&#160;</td>
+                    #end
+                    <td class="alignRight">$numberFormats.format($idsFormat, $invoiceDto.getInvoiceTotal())</td>
+                </tr>
+            </table>
+
+            <div class="inlineDetails paddingTop10">
+                <span style="margin: 0 10px">Narration : </span>
+                <strong>$invoiceDto.getNarration()</strong>
+            </div>
+
+        </td>
+    </tr>
+    <tr class="vAlignBottom">
+        <td>
+            <div class="footerDetails">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            Amount Chargeable (in words) :
+                            <strong>$InvoicePdfUtils.getAmountInWords($invoiceDto.getInvoiceTotal())</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="inlineDetails paddingTop10">
+                            #if($isGstType)
+                            <span class="inlineLabel">Company's GSTIN</span>: <strong>$companyTin</strong><br/>
+                            <span class="inlineLabel">Company's PAN</span>: <strong>$invoiceDto.getCompanyPan()</strong>
+                            #else
+                            <span class="inlineLabel">Company's VAT TIN</span>:
+                            #end
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="vAlignTop paddingTop10">
+                            <div>
+                                <div><span class="underlineText">Bank Details</span></div>
+                                <table class="bankDetailTable">
+                                    <tr>
+                                        <td>Account Name <span class="right">:</span></td>
+                                        <strong>$invoiceDto.getCompanyName()</strong>
+                                    </tr>
+                                    <tr>
+                                        <td>A/C No <span class="right">:</span></td>
+                                        <td>
+                                            <strong>$invoiceDto.ofbAccountDto.getAccountNumber()</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bank <span class="right">:</span></td>
+                                        <td><strong>$invoiceDto.ofbAccountDto.getBankName()</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Branch <span class="right">:</span></td>
+                                        <td><strong>$invoiceDto.ofbAccountDto.getBankBranch()</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>IFSC <span class="right">:</span></td>
+                                        <td><strong>$invoiceDto.ofbAccountDto.getBankIfsc()</strong></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70%" class="paddingTop10">
+                            <div><span class="underlineText">Terms &amp; Conditions</span></div>
+                            <ul class="termsWrap">
+                                #set($tAndCLineCount = 1)
+                                #foreach( $conditionLine in $invoiceDto.getTermsAndConditions())
+                                #if(!$OfbUtils.isBlank($conditionLine))
+                                <li>$conditionLine</li>
+                                #set($tAndCLineCount = $tAndCLineCount+1)
+                                #end
+                                #end
+                                <li>All disputes are subject to Delhi jurisdiction only.</li>
+                                <li> Note: Unless otherwise stated, tax on this invoice is not payable under reverse charge.</li>
+                                <li>All payments must be made through bank transfer only.</li>
+                                <li>No cash payment will be accepted.</li>
+                            </ul>
+                        </td>
+                        <td style="width: 30%" class="vAlignBottom alignRight">
+                              <div><strong>For $invoiceDto.getCompanyName()</strong></div>
+                            <div class="paddingTop40">Authorised Signatory</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

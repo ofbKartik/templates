@@ -1,0 +1,22 @@
+{
+  "transferLetterLNumber": "OFB/TL/25-26/0001",
+  "orderItemList": [
+    {
+      "orderItemName": "PRIME HOT ROLLED STEEL SHEETS IN COILS",
+      "actualQuantity": 25.65,
+      "unit": "MT"
+    },
+    {
+      "orderItemName": "GALVANIZED STEEL COILS",
+      "actualQuantity": 15.2,
+      "unit": "MT"
+    },
+    {
+      "orderItemName": "ALUMINUM INGOTS",
+      "actualQuantity": 10.5,
+      "unit": "MT"
+    }
+  ],
+  "invoiceNo": "TI/AP25-26/00017",
+  "buyerName": "NOHAR CHAND LOHA BHANDAR"
+}

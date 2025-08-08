@@ -1,0 +1,327 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html { font-family:sans-serif; padding: 0; height: 100%;}
+      body { margin: 0; font-size: 12px; height: 100%; border: 1px solid #000000}
+
+      .wrapperTable { width: 100%;border-collapse:collapse; height: 100%; border: 1px solid #000000}
+
+      h2 { margin: 0; padding: 5px 0; font-size: 11px; font-weight: bold; display: block; text-align: center;}
+      table { width: 100%;border-collapse:collapse;line-height:normal;}
+      .commonTable { width: 100%;border-collapse:collapse;line-height:normal;font-size: 11px;border-top: 1px solid #333; border-bottom: 1px solid #333; -fs-table-paginate: paginate; border-spacing: 0px;}
+      .commonTable thead td { border-bottom: 1px solid #333; text-align: center; vertical-align: top;}
+      .commonTable td {padding: 5px 4px; border-left: 1px solid #333;}
+      .commonTable tr td:first-child { border-left: none;}
+      .commonTable .totalWrap td { font-weight: bold; border-top: 1px solid #333; padding: 8px 4px;}
+      .commonTable.alignTop td { vertical-align: top;}
+
+      .addressWrap { line-height: 1.35; font-size: 12px;}
+      .addressWrap strong { display: block;}
+      .pageSubTitle { font-size: 12px; font-weight: bold; padding: 10px 4px 5px;}
+      .pageBreak {page-break-after: always;}
+      .block { display: block;}
+      .right { float: right;}
+
+      .vAlignTop { vertical-align: top;}
+      .vAlignMiddle { vertical-align: middle;}
+      .vAlignBottom { vertical-align: bottom;}
+
+      .alignRight { text-align: right;}
+      .alignCenter { text-align: center;}
+
+      .borderBottom { border-bottom:  1px solid #333;}
+      .borderTop { border-top:  1px solid #333;}
+      .borderRight { border-right:  1px solid #333;}
+      .borderLeft { border-left:  1px solid #333;}
+
+      .noPadding { padding: 0;}
+      .paddingBottom5 { padding-bottom: 5px;}
+      .paddingBottom10 { padding-bottom: 10px;}
+      .paddingTop5 { padding-top: 5px;}
+      .paddingTop10 { padding-top: 10px;}
+      .paddingTop20 { padding-top: 20px;}
+      .paddingTop40 { padding-top: 40px;}
+
+      .marginBottom5 { margin-bottom: 5px;}
+      .marginBottom10 { margin-bottom: 10px;}
+      .marginTop5 { margin-top: 5px;}
+      .marginTop10 { margin-top: 10px;}
+      .negativeSideMargin5 { margin-left: -5px; margin-right: -5px;}
+
+      .invoiceAddressWrap { padding: 5px 5px 10px;}
+
+      .invoiceDetailTable td { border-bottom: 1px solid #333; border-right: 1px solid #333; padding: 4px; vertical-align: top; }
+      .invoiceDetailTable td strong { display: block; padding-top: 4px;}
+      .invoiceDetailTable td:last-child { border-right: none;}
+      .invoiceDetailTable tr:last-child td { border-bottom: none;}
+
+      .underlineText { padding-bottom: 1px; border-bottom:  1px solid #333; display: inline-block;}
+
+      .footerDetails { padding: 5px;line-height: 1.35;}
+      .footerDetails strong { display: block;}
+      .termsWrap { line-height: 1.35;}
+
+      .inlineDetails .inlineLabel { display: inline-block; min-width: 120px;}
+      .inlineDetails strong { display: inline-block;}
+
+      .bankDetailTable td { vertical-align: top; padding: 2px 2px 2px 0; font-size: 11px;}
+      .bankDetailTable td:first-child { width: 20%;}
+      .bankDetailTable td:last-child { width: 80%;}
+      .bankDetailTable strong { display: inline-block;}
+
+      .termsWrap { padding: 2px 0 0 20px; margin: 0;}
+      .termsWrap li { list-style-type: decimal;}
+
+      .footer { position: running(footer); padding: 0 0 10px; }
+
+      @page {
+          size: A4; margin: 20pt 15pt 25pt 36pt; padding: 0; border: 1px solid #333;
+          @bottom-center { content: element(footer); vertical-align: bottom;}
+          @top-right { content: "Page " counter(page) " of " counter(pages); font-size: 9px; font-family:sans-serif; vertical-align: top; padding-top: 10px;}
+          #if($previewOnly)
+          background-image: url("https://d5nfy7n2jvqm2.cloudfront.net/fe-imgs/previewPdfbg.png"); background-repeat: no-repeat; background-position: center; background-size: 50%;
+          #end
+      }
+    </style>
+    <title>Transfer Letter</title>
+  </head>
+  <body>
+    <table class="wrapperTable">
+      <tr style="padding: 10px 0px">
+        <td style="border-bottom: 1px solid #000000; padding: 10px 0px">
+          <p
+            style="
+              text-align: center;
+              font-size: 12px;
+              font-weight: bold;
+              margin: 6px 0;
+            "
+          >
+            TRANSFER LETTER
+          </p>
+          <p style="text-align: center; font-size: 8px; margin: 2px 0">
+            Registered Office: B-1102, Sankalp Iconic Tower, Opp. Vikramnagar,
+            Bopal Ambli Road, Ahmedabad- 380054, Gujarat, India,
+            Email:finance@ofbusiness.in; Phone: 1800 1029 586; CIN:
+            U74140GJ2015PTC154393
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; border-collapse: collapse">
+            <tr>
+              <td
+                style="
+                  border-right: 1px solid #000000;
+                  width: 40%;
+                  padding: 8px 6px;
+                  vertical-align: top;
+                "
+              >
+                <img
+                  src="https://d5nfy7n2jvqm2.cloudfront.net/fe-imgs/new_design/logo_green.png"
+                  height="38"
+                  alt="logo"
+                />
+                <p
+                  style="font-size: 10px; font-weight: 500; margin-bottom: 2px"
+                >
+                  From
+                </p>
+                <p style="font-size: 12px; font-weight: 700; margin-top: 0">
+                  OFB Tech Pvt. Ltd.
+                </p>
+              </td>
+              <td style="width: 60%; vertical-align: top">
+                <table
+                  style="
+                    width: 100%;
+                    border-collapse: collapse;
+                    border-bottom: 1px solid #000000;
+                  "
+                >
+                  <tr>
+                    <td
+                      style="
+                        border-right: 1px solid #000000;
+                        width: 50%;
+                        padding: 8px 6px;
+                      "
+                    >
+                      <p
+                        style="
+                          font-size: 10px;
+                          font-weight: 500;
+                          margin: 0;
+                          margin-bottom: 2px;
+                        "
+                      >
+                        Transfer Letter No.
+                      </p>
+                      <p style="font-size: 12px; font-weight: 700; margin: 0">
+                        $transferLetterNo
+                      </p>
+                    </td>
+                    <td style="width: 50%; padding: 8px 6px">
+                      <p
+                        style="
+                          font-size: 10px;
+                          font-weight: 500;
+                          margin: 0;
+                          margin-bottom: 2px;
+                        "
+                      >
+                        Dated
+                      </p>
+                      <p style="font-size: 12px; font-weight: 700; margin: 0">
+                        $date
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+                <table style="width: 100%; border-collapse: collapse">
+                  <tr>
+                    <td style="padding: 8px 6px">
+                      <p
+                        style="
+                          font-size: 10px;
+                          font-weight: 500;
+                          margin: 0;
+                          margin-bottom: 2px;
+                        "
+                      >
+                        To
+                      </p>
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 700;
+                          margin: 0;
+                          margin-bottom: 4px;
+                        "
+                      >
+                        Warehouse Manager
+                      </p>
+                      <p style="font-size: 11px; font-weight: 500; margin: 0">
+                        $vendorName
+                      </p>
+                      <p style="font-size: 11px; font-weight: 400; margin: 0">
+                        $address.addressLine1 $address.addressLine2
+                        $address.landmark $address.city $address.state
+                        $address.country - $address.pinCode
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td
+          style="
+            padding: 8px 6px;
+            border-top: 1px solid #000000;
+          "
+        >
+          <p style="font-size: 12px; font-weight: 500; margin: 6px 0px 0px 0px">
+            Dear Sir,
+          </p>
+          <p style="font-size: 12px; font-weight: 500; margin: 6px 0px">
+            We hereby inform you that the items listed below have been
+            transferred to
+            <strong>$buyerName (GSTIN: $gst)</strong> via Invoice No.
+            <strong>$invoiceNo</strong>.
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <table
+            class="wrapperTable"
+          >
+            <thead>
+              <tr style="background-color: #ffffff; font-size: 12px">
+                <th
+                  style="border: 1px solid #000; padding: 6px; font-size: 12px"
+                >
+                  S. No.
+                </th>
+                <th
+                  style="border: 1px solid #000; padding: 6px; font-size: 12px"
+                >
+                  Items Description
+                </th>
+                <th
+                  style="border: 1px solid #000; padding: 6px; font-size: 12px"
+                >
+                  Quantity
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              #set($index = 1) #foreach($item in $orderItemList)
+              <tr>
+                <td
+                  style="border: 1px solid #000; padding: 6px; font-size: 12px"
+                >
+                  $index
+                </td>
+                <td
+                  style="border: 1px solid #000; padding: 6px; font-size: 12px"
+                >
+                  $item.orderItemName
+                </td>
+                <td
+                  style="border: 1px solid #000; padding: 6px; font-size: 12px"
+                >
+                  $item.actualQuantity $item.unit
+                </td>
+              </tr>
+              #set($index = $index + 1) #end
+            </tbody>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td
+          style="
+            text-align: left;
+            padding: 20px;
+            border-top: 0px solid #000000;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 0;
+          "
+        >
+          NOTE: $comment
+        </td>
+      </tr>
+
+      <tr>
+        <td
+          style="
+            text-align: right;
+            padding: 20px;
+            border-top: 0px solid #000000;
+            font-size: 10px;
+            margin: 0;
+          "
+        >
+          <strong>Authorised Signatory</strong>
+        </td>
+      </tr>
+    </table>
+
+    <p style="text-align: center; font-size: 11px; margin-top: 0px">
+      This is a computer-generated Transfer letter
+    </p>
+  </body>
+</html>

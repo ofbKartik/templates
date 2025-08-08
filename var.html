@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tax Invoice</title>
+  </head>
+  <body>
+    <table
+      style="
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #000;
+        padding: 10px 0px;
+      "
+    >
+      <tr>
+        <td style="border-bottom: 1px solid #000; padding: 4px">
+          <p
+            style="
+              text-align: center;
+              font-size: 12px;
+              font-weight: bold;
+              margin: 0;
+            "
+          >
+            TAX INVOICE
+          </p>
+          <p style="text-align: center; font-size: 8px; margin: 2px 0">
+            Registered Office: B-1102, Sankalp Iconic Tower, Opp. Vikramnagar,
+            Bopal Ambli Road, Ahmedabad-380054, Gujarat, India, Email:
+            finance@ofbusiness.in; Phone: 1800 1029 586; CIN:
+            U74140GJ2015PTC154393
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; border-collapse: collapse">
+            <tr>
+              <td
+                style="
+                  width: 50%;
+                  border-right: 1px solid #000;
+                  padding: 8px;
+                  vertical-align: top;
+                "
+              >
+                <img
+                  src="https://d5nfy7n2jvqm2.cloudfront.net/fe-imgs/new_design/logo_green.png"
+                  height="38"
+                  alt="logo"
+                />
+                <p style="font-size: 10px; font-weight: 700; margin: 4px 0 2px">
+                  Sold by
+                </p>
+                <p style="font-size: 11px; margin: 0">
+                  <strong>$invoiceDto.getCompanyName()</strong><br />
+                  #if($OfbUtils.isNotBlank($invoiceDto.getSupplierAddress().getLandmark()))
+                  $invoiceDto.getSupplierAddress().getLandmark()<br />
+                  #end
+                  #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine1($invoiceDto.getSupplierAddress())))
+                  $InvoicePdfUtils.getAddressLine1($invoiceDto.getSupplierAddress())<br />
+                  #end
+                  #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine2($invoiceDto.getSupplierAddress())))
+                  $InvoicePdfUtils.getAddressLine2($invoiceDto.getSupplierAddress())<br />
+                  #end
+                  #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine3($invoiceDto.getSupplierAddress())))
+                  $InvoicePdfUtils.getAddressLine3($invoiceDto.getSupplierAddress())<br />
+                  #end State Code & Name:
+                  $InvoicePdfUtils.getStateNameAndCode($invoiceDto.getSupplierAddress())<br />
+                  #if($OfbUtils.isNotBlank($ofbEntity.getPan())) PAN No:
+                  $InvoicePdfUtils.getString($ofbEntity.getPan())<br />
+                  #end #if($isGstType) GSTIN: $companyTin #else
+                  #if($OfbUtils.isNotBlank($ofbEntity.getServiceTaxNumber()))
+                  Service Tax No:
+                  $InvoicePdfUtils.getString($ofbEntity.getServiceTaxNumber())<br />
+                  #end TIN No.: $companyTin #end
+                </p>
+              </td>
+              <td style="width: 50%; padding: 8px; vertical-align: top">
+                <table style="width: 100%; font-size: 11px">
+                  <tr>
+                    <td style="width: 25%; padding: 4px">IRN No.</td>
+                    <td style="width: 75%; padding: 4px" colspan="3">
+                      <strong>EX/DL23-34/00744</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 4px">Inv. No</td>
+                    <td style="padding: 4px">
+                      <strong>$invoiceDto.getInvoiceNo()</strong>
+                    </td>
+                    <td style="padding: 4px">Dated</td>
+                    <td style="padding: 4px">
+                      <strong
+                        >$InvoicePdfUtils.getDateToDisplay($invoiceDto)</strong
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 4px">Supplier’s Ref</td>
+                    <td style="padding: 4px">
+                      <strong>$invoiceDto.referenceDetails</strong>
+                    </td>
+                    <td style="padding: 4px">Supply Type</td>
+                    <td style="padding: 4px"><strong>ISD</strong></td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="padding: 4px">
+                      <p style="font-size: 10px; font-weight: 500; margin: 0">
+                        Buyer
+                      </p>
+                      <strong>$invoiceDto.getForOrganisationName()</strong
+                      ><br />
+                      #if($OfbUtils.isNotBlank($invoiceDto.getBuyerBillingAddress().getLandmark()))
+                      $invoiceDto.getBuyerBillingAddress().getLandmark()<br />
+                      #end
+                      #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine1($invoiceDto.getBuyerBillingAddress())))
+                      $InvoicePdfUtils.getAddressLine1($invoiceDto.getBuyerBillingAddress())<br />
+                      #end
+                      #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine2($invoiceDto.getBuyerBillingAddress())))
+                      $InvoicePdfUtils.getAddressLine2($invoiceDto.getBuyerBillingAddress())<br />
+                      #end
+                      #if($OfbUtils.isNotBlank($InvoicePdfUtils.getAddressLine3($invoiceDto.getBuyerBillingAddress())))
+                      $InvoicePdfUtils.getAddressLine3($invoiceDto.getBuyerBillingAddress())<br />
+                      #end State Code & Name:
+                      $InvoicePdfUtils.getStateNameAndCode($invoiceDto.getBuyerBillingAddress())<br />
+                      #if($isGstType) GSTIN: #else TIN No: #end
+                      $InvoicePdfUtils.getString($invoiceDto.getBuyerTIN())
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <table
+            style="width: 100%; border-collapse: collapse; font-size: 12px"
+          >
+            <thead>
+              <tr>
+                <th style="border: 1px solid #000; padding: 6px">Sl No.</th>
+                <th style="border: 1px solid #000; padding: 6px">
+                  Description
+                </th>
+                <th style="border: 1px solid #000; padding: 6px">HSN/SAC</th>
+                <th style="border: 1px solid #000; padding: 6px">Amount (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style="
+                    border: 1px solid #000;
+                    padding: 6px;
+                    text-align: center;
+                  "
+                >
+                  1
+                </td>
+                <td style="border: 1px solid #000; padding: 6px">
+                  Business Auxiliary Service<br />IGST
+                  $numberFormats.format($idsFormat,
+                  $gstCalculation.getIGstRate())%
+                </td>
+                <td
+                  style="
+                    border: 1px solid #000;
+                    padding: 6px;
+                    text-align: center;
+                  "
+                >
+                  998399
+                </td>
+                <td
+                  style="
+                    border: 1px solid #000;
+                    padding: 6px;
+                    text-align: right;
+                  "
+                >
+                  33,000.00
+                </td>
+              </tr>
+              <tr>
+                <td
+                  colspan="3"
+                  style="
+                    border: 1px solid #000;
+                    padding: 6px;
+                    text-align: right;
+                  "
+                >
+                  IGST
+                </td>
+                <td
+                  style="
+                    border: 1px solid #000;
+                    padding: 6px;
+                    text-align: right;
+                  "
+                >
+                  5,940.00
+                </td>
+              </tr>
+              <tr>
+                <td
+                  colspan="3"
+                  style="
+                    border: 1px solid #000;
+                    padding: 6px;
+                    text-align: right;
+                  "
+                >
+                  <strong>Total</strong>
+                </td>
+                <td
+                  style="
+                    border: 1px solid #000;
+                    padding: 6px;
+                    text-align: right;
+                  "
+                >
+                  <strong>38,940.00</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+
+      <table>
+        <tr>
+          <td style="padding: 8px">
+            <p style="font-size: 11px; margin: 6px 0">
+              Narration: <strong>$invoiceDto.getNarration()</strong>
+            </p>
+            <p style="font-size: 11px; margin: 0">
+              Amount Chargeable (in words):
+              <strong
+                >$InvoicePdfUtils.getAmountInWords($invoiceDto.getInvoiceTotal())</strong
+              >
+            </p>
+            <br />
+            <p style="font-size: 11px; margin: 0">
+              Company's GSTIN: <strong>$companyTin</strong><br />
+              Company's PAN: <strong>$invoiceDto.getCompanyPan()</strong>
+            </p>
+            <br />
+            <p style="font-size: 11px; margin: 0">
+              <strong>Bank Details</strong>
+            </p>
+            <p style="font-size: 11px; margin: 0">
+              Account Name: <strong>$invoiceDto.getCompanyName()</strong><br />
+              A/C No:
+              <strong
+                >$invoiceDto.companyBankAccountDto.getAccountNumber()</strong
+              ><br />
+              Bank:
+              <strong>$invoiceDto.companyBankAccountDto.getBankName()</strong
+              ><br />
+              Branch:
+              <strong>$invoiceDto.companyBankAccountDto.getBankBranch()</strong
+              ><br />
+              IFSC:
+              <strong>$invoiceDto.companyBankAccountDto.getBankIfsc()</strong>
+            </p>
+            <br />
+            <table
+              style="width: 100%; border-collapse: collapse; margin-top: 10px"
+            >
+              <tr>
+                <td style="width: 70%">
+                  <p style="font-size: 11px; margin: 0">
+                    <strong>Terms & Conditions</strong>
+                  </p>
+                  <p style="font-size: 11px; margin: 0">
+                    1. All disputes are subject to Delhi Jurisdiction only.
+                  </p>
+                  <p style="font-size: 11px; margin: 0">
+                    2. Unless otherwise stated, tax on this invoice is not
+                    payable under reverse charge.
+                  </p>
+                </td>
+                <td style="text-align: right; padding-left: 20px">
+                  <p style="font-size: 11px; margin: 0">
+                    <strong>For OFB Tech Pvt Ltd</strong>
+                  </p>
+                  <p style="font-size: 11px; margin: 0">
+                    Digitally Signed By<br />Tanweer Hussain<br />OFB TECH
+                    PRIVATE LIMITED<br />Fri Apr 11 16:08:38 IST 2025
+                  </p>
+                  <p style="font-size: 11px; margin: 0">
+                    <strong>Authorised Signatory</strong>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </table>
+    <p style="text-align: center; font-size: 11px; margin-top: 0">
+      This is a Computer Generated Tax Invoice
+    </p>
+  </body>
+</html>

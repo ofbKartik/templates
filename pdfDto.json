@@ -1,0 +1,31 @@
+{
+  "orderItemList": [
+    {
+      "orderItemName": "PRIME HOT ROLLED STEEL SHEETS IN COILS",
+      "actualQuantity": 25.65,
+      "unit": "MT"
+    },
+    {
+      "orderItemName": "GALVANIZED STEEL COILS",
+      "actualQuantity": 15.2,
+      "unit": "MT"
+    }
+  ],
+  "invoiceNo": "TI/AP25-26/00017",
+  "pan": "24AAQFN3953R1ZE",
+  "gst": "24AAQFN3953R1ZE",
+  "buyerName": "NOHAR CHAND LOHA BHANDAR",
+  "address": {
+    "addressLine1": "B-1102, Sankalp Iconic Tower",
+    "addressLine2": "Opp. Vikramnagar, Bopal Ambli Road",
+    "city": "Ahmedabad",
+    "landmark": "Near Bopal Cross Road",
+    "state": "Gujarat",
+    "country": "India",
+    "pinCode": "380054"
+  },
+  "date": "30-Apr-2025",
+  "transferLetterNo": "OFB/TL/25-26/0001",
+  "vendorName": "TALOJA STEEL SERVICE CENTRE LIMITED",
+  "comment": "Kartik is testing here"
+}

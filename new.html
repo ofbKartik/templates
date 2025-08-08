@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transfer Letter</title>
+  <style>
+    body { margin: 0; font-size: 12px; font-family: sans-serif; }
+    .border { border: 1px solid #000; }
+    .border-bottom { border-bottom: 1px solid #000; }
+    .border-right { border-right: 1px solid #000; }
+    .padding-8-6 { padding: 8px 6px; }
+    .text-center { text-align: center; }
+    .font-12 { font-size: 12px; }
+    .font-11 { font-size: 11px; }
+    .font-10 { font-size: 10px; }
+    .font-8 { font-size: 8px; }
+    .font-bold { font-weight: 700; }
+    .font-medium { font-weight: 500; }
+    .margin-0 { margin: 0; }
+    .margin-top-2 { margin-top: 2px; }
+    .margin-bottom-0 { margin-bottom: 0; }
+    .margin-bottom-2 { margin-bottom: 2px; }
+    .margin-bottom-4 { margin-bottom: 4px; }
+    .flex { display: flex; }
+    .flex-end { display: flex; justify-content: end; }
+    .w-40 { width: 40%; }
+    .w-50 { width: 50%; }
+    .w-60 { width: 60%; }
+    .w-100 { width: 100%; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { border: 1px solid #000; padding: 6px; font-size: 12px; }
+    .text-left { text-align: left; }
+  </style>
+</head>
+<body>
+  <div class="border">
+    <div class="border-bottom">
+      <p class="text-center font-12 font-bold margin-bottom-0">TRANSFER LETTER</p>
+      <p class="text-center font-8 font-medium margin-top-2">
+        Registered Office: B-1102, Sankalp Iconic Tower, Opp. Vikramnagar,
+        Bopal Ambli Road, Ahmedabad- 380054, Gujarat, India,
+        Email: finance@ofbusiness.in; Phone: 1800 1029 586; CIN:
+        U74140GJ2015PTC154393
+      </p>
+    </div>
+    <div class="flex border-bottom">
+      <div class="border-right w-40 padding-8-6">
+        <img src="https://d5nfy7n2jvqm2.cloudfront.net/fe-imgs/new_design/logo_green.png" height="38" alt="logo" />
+        <p class="font-10 font-medium margin-bottom-2">From</p>
+        <p class="font-12 font-bold margin-0">OFB Tech Pvt. Ltd.</p>
+      </div>
+      <div class="w-60">
+        <div class="flex border-bottom">
+          <div class="border-right w-50 padding-8-6">
+            <p class="font-10 font-medium margin-0 margin-bottom-2">Transfer Letter No.</p>
+            <p class="font-12 font-bold margin-0">$transferLetterNo</p>
+          </div>
+          <div class="w-50 padding-8-6">
+            <p class="font-10 font-medium margin-0 margin-bottom-2">Dated</p>
+            <p class="font-12 font-bold margin-0">$date</p>
+          </div>
+        </div>
+        <div class="padding-8-6">
+          <p class="font-10 font-medium margin-0 margin-bottom-2">To</p>
+          <p class="font-12 font-bold margin-0 margin-bottom-4">Warehouse Manager</p>
+          <p class="font-11 font-medium margin-0">$vendorName</p>
+          <p class="font-11 margin-0">
+            $address.addressLine1 $address.addressLine2 $address.landmark $address.city $address.state $address.country - $address.pinCode
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="padding-8-6 border-bottom">
+      <p class="font-12 font-medium margin-0 margin-top-2">Dear Sir,</p>
+      <p class="font-12 font-medium margin-0 margin-top-2">
+        We hereby inform you that the items listed below have been transferred to
+        <strong>$buyerName (GSTIN: $gst)</strong> via Invoice No.
+        <strong>$invoiceNo</strong>.
+      </p>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S. No.</th>
+          <th>Items Description</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        #set($index = 1)
+        #foreach($item in $orderItemList)
+        <tr>
+          <td>$index</td>
+          <td>$item.orderItemName</td>
+          <td>$item.actualQuantity $item.unit</td>
+        </tr>
+        #set($index = $index + 1)
+        #end
+      </tbody>
+    </table>
+    <div class="flex-end padding-8-6">
+      <div class="text-left font-10">
+        <strong>For OFB Tech Pvt Ltd</strong><br />
+        Digitally Signed By<br />
+        Siddharth Gupta<br />
+        OFB TECH PRIVATE LIMITED<br />
+        Wed Dec 20 15:00:03 IST 2023<br />
+        <strong>Authorised Signatory</strong>
+      </div>
+    </div>
+  </div>
+  <p class="text-center font-11 margin-0">This is a computer-generated Transfer letter</p>
+</body>
+</html>
