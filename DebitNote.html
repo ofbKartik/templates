@@ -1,0 +1,296 @@
+<html lang="en"></html>
+    
+</html>
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        html { font-family:sans-serif; padding: 0; height: 100%;}
+        body { margin: 0; font-size: 12px; height: 100%;}
+
+        .wrapperTable { width: 100%;border-collapse:collapse; height: 100%;}
+
+        h2 { margin: 0; padding: 5px 0; font-size: 11px; font-weight: bold; display: block; text-align: center;}
+        table { width: 100%;border-collapse:collapse;line-height:normal;}
+        .commonTable { width: 100%;border-collapse:collapse;line-height:normal;font-size: 11px;border-top: 1px solid #333; border-bottom: 1px solid #333; -fs-table-paginate: paginate; border-spacing: 0px;}
+        .commonTable thead td { border-bottom: 1px solid #333; text-align: center; vertical-align: top;}
+        .commonTable td {padding: 5px 4px; border-left: 1px solid #333;}
+        .commonTable tr td:first-child { border-left: none;}
+        .commonTable .totalWrap td { font-weight: bold; border-top: 1px solid #333; padding: 8px 4px;}
+        .commonTable.alignTop td { vertical-align: top;}
+
+        .addressWrap { line-height: 1.35; font-size: 12px;}
+        .addressWrap strong { display: block;}
+        .pageSubTitle { font-size: 12px; font-weight: bold; padding: 10px 4px 5px;}
+        .pageBreak {page-break-after: always;}
+        .block { display: block;}
+        .right { float: right;}
+
+        .vAlignTop { vertical-align: top;}
+        .vAlignMiddle { vertical-align: middle;}
+        .vAlignBottom { vertical-align: bottom;}
+
+        .alignRight { text-align: right;}
+        .alignCenter { text-align: center;}
+
+        .borderBottom { border-bottom:  1px solid #333;}
+        .borderTop { border-top:  1px solid #333;}
+        .borderRight { border-right:  1px solid #333;}
+        .borderLeft { border-left:  1px solid #333;}
+
+        .noPadding { padding: 0;}
+        .paddingBottom5 { padding-bottom: 5px;}
+        .paddingBottom2 { padding-bottom: 2px;}
+        .paddingBottom10 { padding-bottom: 10px;}
+        .paddingTop5 { padding-top: 5px;}
+        .paddingTop10 { padding-top: 10px;}
+        .paddingTop20 { padding-top: 20px;}
+        .paddingTop40 { padding-top: 40px;}
+
+        .marginBottom5 { margin-bottom: 5px;}
+        .marginBottom10 { margin-bottom: 10px;}
+        .marginTop5 { margin-top: 5px;}
+        .marginTop10 { margin-top: 10px;}
+        .negativeSideMargin5 { margin-left: -5px; margin-right: -5px;}
+
+        .invoiceAddressWrap { padding: 5px 5px 10px;}
+
+        .invoiceDetailTable td { border-bottom: 1px solid #333; border-right: 1px solid #333; padding: 4px; vertical-align: top; }
+        .invoiceDetailTable td strong { display: block; padding-top: 4px;}
+        .invoiceDetailTable td:last-child { border-right: none;}
+        .invoiceDetailTable tr:last-child td { border-bottom: none;}
+
+        .underlineText { padding-bottom: 1px; border-bottom:  1px solid #333; display: inline-block;}
+
+        .footerDetails { padding: 5px;line-height: 1.35;}
+        .footerDetails strong { display: block;}
+        .termsWrap { line-height: 1.35;}
+
+        .inlineDetails .inlineLabel { display: inline-block; min-width: 120px;}
+        .inlineDetails strong { display: inline-block;}
+
+        .bankDetailTable td { vertical-align: top; padding: 2px 2px 2px 0; font-size: 11px;}
+        .bankDetailTable td:first-child { width: 20%;}
+        .bankDetailTable td:last-child { width: 80%;}
+        .bankDetailTable strong { display: inline-block;}
+
+        .termsWrap { padding: 2px 0 0 20px; margin: 0;}
+        .termsWrap li { list-style-type: decimal;}
+
+        .footer { position: running(footer); padding: 0 0 10px; }
+
+        @page {
+            size: A4; margin: 20pt 15pt 25pt 36pt; padding: 0; border: 1px solid #333;
+            @bottom-center { content: element(footer); vertical-align: bottom;}
+            @top-right { content: "Page " counter(page) " of " counter(pages); font-size: 9px; font-family:sans-serif; vertical-align: top; padding-top: 10px;}
+            #if($previewOnly)
+            background-image: url("https://d5nfy7n2jvqm2.cloudfront.net/fe-imgs/previewPdfbg.png"); background-repeat: no-repeat; background-position: center; background-size: 50%;
+            #end
+        }
+    </style>
+</head>
+<body>
+
+
+<table class="wrapperTable">
+    <tr>
+        <td>
+            <table class="borderBottom">
+                <tr>
+                    <td colspan="3">
+                         <div style="font-size: 8.7px" class="alignCenter paddingBottom2">Delivery Note</div>
+                         <div style="font-size: 8px" class="alignCenter paddingBottom5">Registered Office: B-1102, Sankalp Iconic Tower, Opp. Vikramnagar, Bopal Ambli Road, Ahmedabad - 380054, Gujarat  CIN: U74140GJ2015PTC154393</div>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td style="width: 50%;" class="borderRight noPadding">
+                        <div class="invoiceAddressWrap">
+                            <div>
+                                <span style="display: inline-block; width:60%; vertical-align:top;">
+                                <img src="$deliveryNoteGenerateDto.getDefaultImageLink" width="170px" style="display: inline-block;" />
+                                </span>
+                            </div>
+                            <div class="addressWrap paddingTop5 paddingBottom5">
+                                <div class="paddingBottom5">Consignor</div>
+                                <strong>$deliveryNoteGenerateDto.consignorName</strong><br/>
+
+                                #set($parts = [])
+                                #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consignorAddress.landmark))
+                                    #set($discard = $parts.add($deliveryNoteGenerateDto.consignorAddress.landmark))
+                                #end
+
+                                #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consignorAddress.addressLine1))
+                                    #set($discard = $parts.add($deliveryNoteGenerateDto.consignorAddress.addressLine1))
+                                #end
+
+                                #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consignorAddress.addressLine2))
+                                    #set($discard = $parts.add($deliveryNoteGenerateDto.consignorAddress.addressLine2))
+                                #end
+
+                                #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consignorAddress.city))
+                                    #set($discard = $parts.add($deliveryNoteGenerateDto.consignorAddress.city))
+                                #end
+
+                                #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consignorAddress.pinCode))
+                                    #set($discard = $parts.add($deliveryNoteGenerateDto.consignorAddress.pinCode))
+                                #end
+
+                                #set($addrLine = $parts.toString().replace("[","").replace("]",""))
+                                $addrLine<br/>
+
+                                State Code & Name: $deliveryNoteGenerateDto.consignorAddress.state<br/>
+
+                                #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consignorAddress.linkedGst))
+                                    GSTIN : $deliveryNoteGenerateDto.consignorAddress.linkedGst
+                                #end
+                            </div>
+
+
+
+                        </div>
+                    </td>
+                    <td style="width: 50%;" class="vAlignTop noPadding">
+                        <table class="invoiceDetailTable">
+       
+                            <tr>
+                                <td>
+                                    Sr. No
+                                    <strong>$deliveryNoteGenerateDto.deliveryNoteNo</strong>
+                                </td>
+                                <td>
+                                    Dated
+                                    <strong>$InvoicePdfUtils.getDateToDisplay($deliveryNoteGenerateDto.date)</strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <div class="paddingBottom5">Consignee</div>
+                                    <strong>$deliveryNoteGenerateDto.consigneeName</strong><br/>
+
+                                    #set($parts = [])
+                                    #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consigneeAddress.landmark))
+                                        #set($discard = $parts.add($deliveryNoteGenerateDto.consigneeAddress.landmark))
+                                    #end
+
+                                    #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consigneeAddress.addressLine1))
+                                        #set($discard = $parts.add($deliveryNoteGenerateDto.consigneeAddress.addressLine1))
+                                    #end
+
+                                    #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consigneeAddress.addressLine2))
+                                        #set($discard = $parts.add($deliveryNoteGenerateDto.consigneeAddress.addressLine2))
+                                    #end
+
+                                    #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consigneeAddress.city))
+                                        #set($discard = $parts.add($deliveryNoteGenerateDto.consigneeAddress.city))
+                                    #end
+
+                                    #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consigneeAddress.pinCode))
+                                        #set($discard = $parts.add($deliveryNoteGenerateDto.consigneeAddress.pinCode))
+                                    #end
+
+                                    #set($addrLine = $parts.toString().replace("[","").replace("]",""))
+                                    $addrLine<br/>
+
+                                    State Code & Name: $deliveryNoteGenerateDto.consigneeAddress.state<br/>
+
+                                    #if($OfbUtils.isNotBlank($deliveryNoteGenerateDto.consigneeAddress.linkedGst))
+                                    GSTIN : $deliveryNoteGenerateDto.consigneeAddress.linkedGst
+                                    #end
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Place of Supply
+                                    <strong>$deliveryNoteGenerateDto.placeOfSupply</strong>
+                                </td>
+                                <td>
+                                    Transportation Mode
+                                    <strong>$deliveryNoteGenerateDto.transporterMode</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Vehicle No.
+                                    <strong>$deliveryNoteGenerateDto.vehicleNo</strong>
+                                </td>
+                                <td>
+                                    Lot ID
+                                    <strong>$deliveryNoteGenerateDto.lotId</strong>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+        </td>
+    </tr>
+    <tr class="vAlignBottom">
+        <td>
+            <div class="footerDetails">
+                <table
+                    class="override"
+                    >
+                    <thead>
+                        <tr style="background-color: #ffffff; font-weight: bold;">
+                        <th>Sl No.</th>
+                        <th>Particulars</th>
+                        <th>HSN</th>
+                        <th>Rate</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Taxable Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #set($index = 1) 
+                        #foreach($item in $deliveryNoteGenerateDto.deliveryInLineItemDtos)
+                        <tr>
+                        <td>$index</td>
+                        <td>$item.title</td>
+                        <td>#if($item.hsnCode) $item.hsnCode #else - #end</td>
+                        <td>$item.unitRate</td>
+                        <td>$item.receivedQuantity</td>
+                        <td>$item.unit</td>
+                        <td>$item.unitRate</td>
+                        </tr>
+                        #set($index = $index + 1)
+                        #end
+
+                        <tr>
+                        <td colspan="6" style="text-align: right; font-weight: bold;">Round Off</td>
+                        <td>$deliveryNoteGenerateDto.roundOff</td>
+                        </tr>
+
+                        <!-- Total Row -->
+                        <tr>
+                        <td colspan="4"></td>
+                        <td style="font-weight: bold;">$deliveryNoteGenerateDto.totalQuantity</td>
+                        <td style="font-weight: bold;">
+                        </td>
+                        <td style="font-weight: bold;">
+                            $deliveryNoteGenerateDto.totalAmount
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </td>
+        <tr>
+                   
+                    <td style="width: 30%; text-align: right;" class="vAlignBottom">
+                        <div class="paddingTop40">Authorised Signatory</div>
+                    </td>
+                    </tr>
+    </tr>
+</table>
+</body>
+</html>
